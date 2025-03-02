@@ -1,5 +1,3 @@
-# hexdec
-```
 REPL convert base-X ASCII-encoded number (capped to 8 bytes) to an equivalent base-Y ASCII-encoded number
 
 Options: --xb BASE, --yb BASE
@@ -7,6 +5,3 @@ Options: --xb BASE, --yb BASE
          --help
 
 Pre-defined bases: (hex)adecimal, (dec)imal, (oct)al and (bin)ary
-```
-
-# Todo
