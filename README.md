@@ -1,13 +1,12 @@
 # hexdec
-Convert to and from various bases
+REPL convert base-X ASCII-encoded number (capped to 8 bytes) to an equivalent base-Y ASCII-encoded number
 
 # Options
 ```
-Options: --help - prints this
-         --xy - convert from base x to y
-         --cont - run indefinitely
-Bases: he(x)adecimal, (d)ecimal, (o)ctal, (b)inary and (r)aw
+Options: --xb BASE, --yb BASE
+         --xa ALPHABET, --ya ALPHABET
+         --help
+Pre-defined bases: (hex)adecimal, (dec)imal, (oct)al and (bin)ary
 ```
 
 # Todo
-- [ ] Convert input in a particular base to a raw number
