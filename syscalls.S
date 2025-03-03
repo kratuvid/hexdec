@@ -1,8 +1,7 @@
-    .section .text
+    .include "macros.S"
 
-    .irp sym, exit, read, write
-        .global sys_\sym
-    .endr
+    .section .text
+    declare_global_v sys_exit, sys_read, sys_write
 
 sys_exit:
     mov rax, 60
