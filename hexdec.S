@@ -23,6 +23,10 @@ str_option_obase: .asciz "--obase"
 str_option_ialpha: .asciz "--ialpha"
 str_option_oalpha: .asciz "--oalpha"
 
+str_bin: .asciz "bin"
+str_oct: .asciz "oct"
+str_dec: .asciz "dec"
+str_hex: .asciz "hex"
 str_alpha_bin: .ascii "01"
 str_alpha_oct: .ascii "01234567"
 str_alpha_dec: .ascii "0123456789"
@@ -105,7 +109,31 @@ handle_args:    # (argc, argv)
 
     # check if all requirements were met
     # verify each of them were filled
-    .irp ptr, str_ialpha, str_oalpha, quad_ibase, quad_obase
+    .irp ptr, str_ialpha, str_oalpha
+        # jumps to error pathway if any of them is zero
+        mov rax, \ptr[rip]
+        test rax, rax
+        jz .L1_error_no_options
+    .endr
+
+    # replace predefined-bases
+    .macro .L1m_replace_inner str_ptr, str_predef
+        mov rdi, \str_ptr[rip]
+        lea rsi, \str_predef[rip]
+        call strcmp
+
+        .L1_replace_\@:
+        // TODO
+    .endm
+
+    .irp str_ptr, str_ialpha, str_oalpha
+        .irp str_predef, str_bin, str_oct, str_dec, str_hex
+            .L1m_replace_inner \str_ptr, \str_predef
+        .endr
+    .endr
+
+    # verify each of them were filled
+    .irp ptr, quad_ibase, quad_obase
         # jumps to error pathway if any of them is zero
         mov rax, \ptr[rip]
         test rax, rax
