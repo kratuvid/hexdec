@@ -15,7 +15,7 @@ project(hexdec LANGUAGES ASM)
 
 set(common_options)
 add_compile_options(${common_options} -msyntax=intel -mnaked-reg --fatal-warnings)
-add_link_options(${common_options} --dynamic-linker /lib64/ld-linux-x86-64.so.2 -nostdlib -pie)
+add_link_options(${common_options} --dynamic-linker /lib64/ld-linux-x86-64.so.2 -nostdlib -pie -z noexecstack)
 
 include_directories(.)
 
